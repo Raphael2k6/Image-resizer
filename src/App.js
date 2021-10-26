@@ -24,10 +24,16 @@ function App() {
 
   return (
     <Fragment>
-      <input 
+      <h3>Images greater than 2mb will be resized</h3>
+      <input
+        accept="image/*"
+        id="img"
+        name="myImage"
+        onChange={(e) => handleId(e)}
         type="file"
-
-      />  
+      />
+      <p>Preview image</p>  
+      <img src={image} alt="image preview" />
     </Fragment>
   );
 }
