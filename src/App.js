@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
-import { handleResize } from "./Resizer"
+import { handleResize } from "./Resizer";
+import styles from "./App.module.css";
 
 function App() {
   const [image, setImage] = useState();
@@ -24,16 +25,20 @@ function App() {
 
   return (
     <Fragment>
-      <h3>Images greater than 2mb will be resized</h3>
-      <input
-        accept="image/*"
-        id="img"
-        name="myImage"
-        onChange={(e) => handleId(e)}
-        type="file"
-      />
-      <p>Preview image</p>  
-      <img src={image} alt="image preview" />
+      <div className={styles.container}>
+        <div className={styles.holder}>
+          <h3>Images greater than 2mb will be resized</h3>
+          <input
+            accept="image/*"
+            id="img"
+            name="myImage"
+            onChange={(e) => handleId(e)}
+            type="file"
+          />
+          <p>Preview image</p>  
+          <img src={image} alt="image preview" />
+        </div>
+      </div>
     </Fragment>
   );
 }
