@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, Fragment } from "react";
+import { handleResize } from "./Resizer"
 
 function App() {
+  const [image, setImage] = useState();
+
+  const handleId = (event) => {
+    const uploadFilesArray = Array.prototype.slice.call(event.target.files);
+    uploadFilesArray.forEach((file) => {
+      const fileUrl = window.URL.createObjectURL(file);
+      const reader = new FileReader();
+      const fileData = {
+        fileUrl,
+        name: file.name,
+      };
+      reader.readAsDataURL(file);
+      handleResize(file, (resizedImage) => {
+        console.log("original image", uploadFilesArray);
+        console.log("resized image", resizedImage);
+        setImage(URL.createObjectURL(resizedImage));
+      });
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <input 
+        type="file"
+
+      />  
+    </Fragment>
   );
 }
 
